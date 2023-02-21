@@ -1,28 +1,28 @@
 create table TEAM(
     team_id varchar(30) primary key,
-    team_rank number(3),
+    team_rank int(3),
     team_name varchar(20) not null,
     country_name varchar(20),
-    no_of_wins number(3),
-    no_of_loses number(3),
-    no_of_draws number(3),
-    no_of_bowlers number(2),
-    no_of_batsmans number(2)
+    no_of_wins int(3),
+    no_of_loses int(3),
+    no_of_draws int(3),
+    no_of_bowlers int(2),
+    no_of_batsmans int(2)
 );
 
-insert into team values(
+insert into TEAM values(
     'IND1221', 1, 'MEN IN BLUE','INDIA', 5, 1, 0, 6, 7
 );
-Insert into team values(
+Insert into TEAM  values(
     'AUS2174', 4, 'KANGAROO','AUSTRAILA', 3, 3, 0, 5, 6
 );
-Insert into team values(
+Insert into TEAM  values(
     'SA5412', 3, 'PROTEA','SOUTH AFRICA', 3, 2, 1, 8, 5
 );
-Insert into team values(
+Insert into TEAM values(
     'NZ5687', 2, 'BLACK CAPS','NEW ZEALAND', 4, 2, 0, 6, 7
 );
-Insert into team values(
+Insert into TEAM values(
     'BAN9852', 5, 'TIGERS','BANGLADESH', 2, 4 , 0, 7, 7
 );
 
@@ -33,6 +33,19 @@ create table WICKET_KEEPER(
     team_id references TEAM,
     wk_name varchar(30)
 );
+CREATE TABLE WICKET_KEEPER (
+wk_name varchar(30) primary key,
+no_of_catches int(3),
+no_of_stumpings int(3)
+);
+CREATE TABLE WICKET_KEEPER (
+wk_name varchar(30) primary key,
+no_of_catches int(3),
+no_of_stumpings int(3),    
+FOREIGN KEY(team_id) REFERENCES TEAM(team_id));
+
+
+
 
 insert into WICKET_KEEPER values(
     'IND1221','MS Dhoni'
@@ -53,7 +66,7 @@ insert into WICKET_KEEPER values(
 create table UMPIRE(
     umpire_id varchar(30) primary key,
     umpire_name varchar(30),
-    no_of_matches number(4),
+    no_of_matches int(4),
     country varchar(20)
 );
 
@@ -75,20 +88,22 @@ insert into UMPIRE values (
 
 create table PLAYER(
     player_id varchar(30) primary key,
-    team_id references TEAM,
-    no_of_worldcups number(2),
-    number_of_matches number(3),
-    batting_average number(3,2),
-    no_of_sixes number(3),
-    no_of_fours number(3),
-    no_of_totalruns number(4)
-    no_of_t20 number(3),
-    no_of_odi number(3),
-    no_of_test number(3),
-    no_of_wickets number(2),
-    type_of_bowler varchar(30),
-    economy number(3,2)
+
+    no_of_worldcups int(2),
+    number_of_matches int(3),
+    batting_average double(3,2),
+    no_of_sixes int(3),
+    no_of_fours int(3),
+    no_of_totalruns int(4),
+    no_of_ttwenty int(3),
+    no_of_odi int(3),
+    no_of_test int(3),
+    no_of_wickets int(2),
+    type_of_bowler int(30),
+    economy double(3,2)
 );
+
+--     team_id references TEAM,
 
 insert into PLAYER values (
     'PLR17410', 'IND1221', 2, 13, 58.47,7,24,800,74,120,20,1,'medium',3.2
